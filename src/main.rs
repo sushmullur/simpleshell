@@ -1,5 +1,6 @@
 use std::io::{self, Write};
 mod cat;
+mod echo;
 
 fn main() {
     loop {
@@ -25,5 +26,8 @@ fn process_command(command: &str) {
     let args = parts;
     if command == "cat"{
         cat::process_command(args);
+    }
+    else if command == "echo" {
+        echo::process_command(args);
     }
 }
