@@ -4,12 +4,15 @@ mod cat;
 fn main() {
     loop {
         print!("osh> "); 
-        io::stdout().flush().unwrap(); // Flush to make sure osh> is printed before input.
+        // Flush to make sure prompt is printed before input.
+        io::stdout().flush().unwrap(); 
 
+        // Read input.
         let mut line = String::new();
-        io::stdin().read_line(&mut line).unwrap(); // Read input.
-        let command = line.trim(); // Remove trailing newline.
-        if command == "exit" {
+        io::stdin().read_line(&mut line).unwrap();
+        let command = line.trim();
+        // Exit conditions
+        if command == "exit" || command == "quit" {
             break;
         }
         process_command(command);
@@ -20,7 +23,7 @@ fn process_command(command: &str) {
     let mut parts = command.split_whitespace();
     let command = parts.next().unwrap();
     let args = parts;
-    if command == "cat" {
+    if command == "cat"{
         cat::process_command(args);
     }
 }
