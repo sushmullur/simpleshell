@@ -1,6 +1,7 @@
 use std::io::{self, Write};
 mod cat;
 mod echo;
+mod grep;
 
 fn main() {
     loop {
@@ -21,6 +22,7 @@ fn main() {
 }
 
 fn process_command(command: &str) {
+    // Split up the command and args
     let mut parts = command.split_whitespace();
     let command = parts.next().unwrap();
     let args = parts;
@@ -29,5 +31,10 @@ fn process_command(command: &str) {
     }
     else if command == "echo" {
         echo::process_command(args);
+    } 
+    else if command == "grep" {
+        grep::process_command(args);
+    } else {
+        eprintln!("Unknown command: {}", command);
     }
 }
